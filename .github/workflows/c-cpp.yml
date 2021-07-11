@@ -13,9 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: docker -SwitchDaemon .
     - run: docker pull registry.gitlab.com/4tu/spheal
     - run: mkdir build
-    - run: docker -SwitchDaemon .
     - run: docker build -t builder .
     - working-directory: ${{ github.workspace }}/build
       shell: cmd
