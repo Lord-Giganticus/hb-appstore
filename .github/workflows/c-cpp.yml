@@ -27,6 +27,16 @@ jobs:
         docker cp wiiu:/code/hb-appstore/appstore.rpx appstore.rpx
         docker cp switch:/code/hb-appstore/appstore.nro appstore.nro
     - uses: actions/upload-artifact@v2.2.4
+      if: github.ref != 'refs/heads/master'
       with: 
         name: Binaries
         path: ${{ github.workspace }}/build
+    - if: github.ref == 'refs/heads/master'
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "Auto"
+        prerelease: true
+        title: "Auto Build"
+        files: |
+          ${{ github.workspace }}/build/*.*
