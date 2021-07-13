@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: recursive
     - run: docker pull registry.gitlab.com/4tu/spheal
     - run: mkdir build
     - run: docker build -t builder .
