@@ -20,10 +20,10 @@ jobs:
     - run: docker build -t builder .
     - working-directory: ${{ github.workspace }}/build
       run: |
-        docker run --name 3ds builder /bin/bash -c "make -f Makefile.3ds"
-        docker run --name wii builder /bin/bash -c "make -f Makefile.wii"
-        docker run --name wiiu builder /bin/bash -c "make -f Makefile.wiiu"
-        docker run --name switch builder /bin/bash -c "make -f Makefile.switch"
+        docker run --name 3ds builder /bin/bash -c "make 3ds"
+        docker run --name wii builder /bin/bash -c "make wii"
+        docker run --name wiiu builder /bin/bash -c "make wiiu"
+        docker run --name switch builder /bin/bash -c "make switch"
         docker cp 3ds:/code/hb-appstore/appstore.3dsx appstore.3dsx
         docker cp wii:/code/hb-appstore/appstore.dol appstore.dol
         docker cp wiiu:/code/hb-appstore/appstore.rpx appstore.rpx
